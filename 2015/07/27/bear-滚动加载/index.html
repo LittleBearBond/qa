@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+        <meta content="telephone=no" name="format-detection">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <meta name="full-screen" content="true">
+        <meta name="screen-orientation" content="portrait">
+        <meta name="x5-fullscreen" content="true">
+        <meta name="360-fullscreen" content="true">
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <style type="text/css" media="screen">
+            html {
+                font-family: 'Microsoft Yahei',"Helvetica Neue", Helvetica, STHeiTi, Arial, sans-serif;
+                -ms-text-size-adjust: 100%;
+                -webkit-text-size-adjust: 100%;
+                font-size: 62.5%;
+            }
+            body {
+                margin: 0;
+                line-height: 1.5;
+                height: 100%;
+                overflow-x: hidden;
+                -webkit-overflow-scrolling: touch;
+            }
+            img {
+                border: 0;
+                vertical-align: middle;
+            }
+            ul,li,p {
+                margin: 0;
+                padding: 0;
+            }
+            ul{
+                list-style: none outside none;
+            }
+            * {
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+            .commentlist li {
+                border-top: 1px solid #FFF;
+                border-bottom: 1px solid #dedede;
+                padding: 15px;
+                position: relative;
+                font-size:1.5rem;
+            }
+            .comment-author{
+                line-height: 1;
+                margin-bottom: 5px;
+                color:#1e50a2;
+            }
+            .comment-content{
+            }
+            .comment-oper{
+                line-height: 1;
+                padding: 10px 0 5px 0;
+                color:#878c92;
+            }
+            .hidden,[hidden]{
+                display:none;
+            }
+            /* .commentlist li:first-child{
+                border-top:none;
+            } */
+            .more {
+                font-size: 1.2rem;
+                line-height: 1.4;
+                text-align: center;
+                padding-top: 20px;
+                color: #838383;
+                height: 30px;
+                margin-bottom: 20px;
+            }
+            .more-loading {
+                background: url(i/loading.gif) 50% 50% no-repeat;
+                -ms-background-size: 20px 20px;
+                background-size: 20px 20px;
+                width: 20px;
+                height: 20px;
+                display: inline-block;
+                vertical-align: top;
+                margin-left: 5px;
+            }
+            .view-end {
+                text-align: center;
+                color: #999999;
+                font-size: 1.5rem;
+                line-height: 2;
+                padding-top: 25px;
+                padding-bottom: 45px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!--ul.commentlist>(li>(p.comment-author{作者$$}+.comment-content{在pc端实现滚动后加载 在移动端实现滚动后加载或触摸下拉后顶部加载 在移动端实现下拉后顶部加载$$} +.comment-oper{操作$$$}))*10-->
+        <ul class="commentlist">
+            <li>
+                <p class="comment-author">作者01</p>
+                <div class="comment-content">在pc端实现滚动后加载 在移动端实现滚动后加载或触摸下拉后顶部加载 在移动端实现下拉后顶部加载01</div>
+                <div class="comment-oper">操作001</div>
+            </li>
+            <li>
+                <p class="comment-author">作者02</p>
+                <div class="comment-content">在pc端实现滚动后加载 在移动端实现滚动后加载或触摸下拉后顶部加载 在移动端实现下拉后顶部加载02</div>
+                <div class="comment-oper">操作002</div>
+            </li>
+            <li>
+                <p class="comment-author">作者03</p>
+                <div class="comment-content">在pc端实现滚动后加载 在移动端实现滚动后加载或触摸下拉后顶部加载 在移动端实现下拉后顶部加载03</div>
+                <div class="comment-oper">操作003</div>
+            </li>
+            <li>
+                <p class="comment-author">作者04</p>
+                <div class="comment-content">在pc端实现滚动后加载 在移动端实现滚动后加载或触摸下拉后顶部加载 在移动端实现下拉后顶部加载04</div>
+                <div class="comment-oper">操作004</div>
+            </li>
+            <li>
+                <p class="comment-author">作者05</p>
+                <div class="comment-content">在pc端实现滚动后加载 在移动端实现滚动后加载或触摸下拉后顶部加载 在移动端实现下拉后顶部加载05</div>
+                <div class="comment-oper">操作005</div>
+            </li>
+            <li>
+                <p class="comment-author">作者06</p>
+                <div class="comment-content">在pc端实现滚动后加载 在移动端实现滚动后加载或触摸下拉后顶部加载 在移动端实现下拉后顶部加载06</div>
+                <div class="comment-oper">操作006</div>
+            </li>
+            <li>
+                <p class="comment-author">作者07</p>
+                <div class="comment-content">在pc端实现滚动后加载 在移动端实现滚动后加载或触摸下拉后顶部加载 在移动端实现下拉后顶部加载07</div>
+                <div class="comment-oper">操作007</div>
+            </li>
+            <li>
+                <p class="comment-author">作者08</p>
+                <div class="comment-content">在pc端实现滚动后加载 在移动端实现滚动后加载或触摸下拉后顶部加载 在移动端实现下拉后顶部加载08</div>
+                <div class="comment-oper">操作008</div>
+            </li>
+            <li>
+                <p class="comment-author">作者09</p>
+                <div class="comment-content">在pc端实现滚动后加载 在移动端实现滚动后加载或触摸下拉后顶部加载 在移动端实现下拉后顶部加载09</div>
+                <div class="comment-oper">操作009</div>
+            </li>
+            <li>
+                <p class="comment-author">作者10</p>
+                <div class="comment-content">在pc端实现滚动后加载 在移动端实现滚动后加载或触摸下拉后顶部加载 在移动端实现下拉后顶部加载10</div>
+                <div class="comment-oper">操作010</div>
+            </li>
+        </ul>
+        <div class="more hidden">加载中<span class="more-loading"></span></div>
+        <div class="view-end hidden">查看最后滴</div>
+        <script>
+            var LoadList = (function() {
+                var limit = false,
+                    emptyFunc = function() {},
+                    options = {
+                        curPage: 0, //当前页
+                        totalPage: 100, //总共多少页
+                        moreSelector: '', //加载更多的提示栏
+                        listBoxSelector: '', //列表容器
+                        disNum: 50, //滚动条距离底部多少开始加载
+                        renderData: emptyFunc, //每次加载数据的回调
+                        onComplete: emptyFunc, //数据加载到最后一页了
+                        onBeforeLoad: emptyFunc, //加载数据之前，返回false中断数据加载
+                        getExtendData: emptyFunc, //获取额外参数，在加载数据的时候传递到服务端
+                        url: '',
+                        ajaxType: 'get'
+                    },
+                    extend = function() {
+                        var i = 1,
+                            key, len = arguments.length;
+                        if (len <= 1) {
+                            return arguments[0];
+                        }
+                        for (; i < len; i++) {
+                            for (key in arguments[i]) {
+                                arguments[0][key] = arguments[i][key];
+                            };
+                        }
+                        return arguments[0];
+                    },
+                    $ = function(sel) {
+                        return document.querySelector(sel);
+                    };
+                var loadList = function(args) {
+                    this.init(args);
+                };
+                extend(loadList.prototype, {
+                    init: function(opts) {
+                        var self = this;
+                        this.opts = extend({}, options, opts || {});
+                        return this.initView().bindEvent();
+                    },
+                    initView: function() {
+                        extend(this, {
+                            $listBox: $(this.opts.listBoxSelector),
+                            $more: $(this.opts.moreSelector)
+                        });
+                        //模拟数据
+                        var $listLi = document.querySelectorAll('li');
+                        var len = $listLi.length,
+                            i = 0;
+                        this.moreHtml = '';
+                        for (; i < len; i++) {
+                            this.moreHtml += $listLi[i].outerHTML;
+                        }
+                        return this;
+                    },
+                    bindEvent: function() {
+                        var self = this,
+                            timmer;
+                        window.addEventListener('scroll', function() {
+                            clearTimeout(timmer);
+                            timmer = setTimeout(function() {
+                                self.isCanLoad() && self.loadMore();
+                            }, 100);
+                        });
+                        return this;
+                    },
+                    isCanLoad: function() {
+                        var opts = this.opts;
+                        var sh = document.documentElement.scrollHeight || document.body.scrollHeight;
+                        var wh = document.documentElement.clientHeight;
+                        var st = document.documentElement.scrollTop || document.body.scrollTop;
+                        //距离不到位
+                        if (sh - (st + wh) > opts.disNum) {
+                            return false;
+                        }
+                        //已经加载到最大页
+                        if (opts.curPage >= opts.totalPage) {
+                            this.hideMore();
+                            return false;
+                        }
+                        //数据加载中……
+                        if (limit) {
+                            return false;
+                        }
+                        return true;
+                        //return (sh - (st + wh) <= opts.disNum) && opts.curPage <= opts.totalPage && !limit;
+                    },
+                    loadMore: function(data) {
+                        var self = this,
+                            opts = this.opts;
+                        if (limit && !data) {
+                            return;
+                        }
+                        limit = true;
+                        /*$.ajax({
+                            url: opts.url,
+                            type: opts.ajaxType,
+                            dataType: 'json',
+                            data: extend({
+                                'page': opts.curPage + 1 //加载页应该是当前页的下一页
+                            }, opts.getExtendData() || {}, data || {}),
+                            beforeSend: function() {
+                                if (opts.onBeforeLoad() === false) {
+                                    limit = false;
+                                    return false;
+                                }
+                                self.showLoading();
+                            },
+                            error: function() {
+                                self.showError();
+                            },
+                            success: function(r) {
+                                if (String(r && r.status) === '0') {
+                                    // 如果是第一页才需要显示为空状态
+                                    var renderData = opts.renderData($.extend({}, r, {
+                                        bfirst: opts.curPage == 0
+                                    }));
+                                    renderData && self.$listBox.append(renderData);
+                                    opts.curPage++;
+                                }
+                                if (opts.curPage >= opts.totalPage) {
+                                    opts.onComplete();
+                                    self.showSuccess();
+                                    self.hideMore();
+                                } else {
+                                    self.hideComplete();
+                                }
+                                setTimeout(function() {
+                                    self.isCanLoad() && self.loadMore();
+                                }, 0);
+                            },
+                            error: $.proxy(self.showError, self),
+                            complete: function() {
+                                limit = false;
+                            }
+                        });*/
+                        //insertAdjacentHTML(where, html)
+                        //模拟一下
+                        self.$more.classList.remove('hidden');
+
+                        setTimeout(function() {
+                            limit = false;
+                            opts.curPage++;
+                            if (opts.curPage >= opts.totalPage) {
+                                self.hideMore();
+                                opts.onComplete();
+                                return this;
+                            }
+                            self.$listBox.insertAdjacentHTML('beforeend', self.moreHtml);
+                            self.hideComplete();
+                        }, 2000);
+                        return this;
+                    },
+                    hideComplete: function() {
+                        var self = this;
+                        this.showSuccess();
+                        setTimeout(function() {
+                            self.$more.classList.add('hidden');
+                        }, 200);
+                    },
+                    //隐藏跟多加载
+                    hideMore: function() {
+                        this.$more.classList.add('hidden');
+                    },
+                    showSuccess: function() {
+                        this.showMsg('success');
+                    },
+                    showLoading: function() {
+                        this.showMsg('loading');
+                    },
+                    showError: function() {
+                        this.showMsg('error');
+                    },
+                    showMsg: function(name) {}
+                });
+                return function(args) {
+                    if (!(this instanceof loadList)) {
+                        return new loadList(args);
+                    }
+                    return this;
+                };
+            })();
+
+            //页面业务
+            var viewEnd = document.querySelector('.view-end');
+
+            var load = LoadList({
+                listBoxSelector: '.commentlist',
+                moreSelector: '.more',
+                totalPage: 3,
+                onComplete: function() {
+                    viewEnd.classList.remove('hidden');
+                }
+            });
+
+            viewEnd.addEventListener('click', function() {
+                load.$listBox.insertAdjacentHTML('beforeend', load.moreHtml);
+                viewEnd.removeEventListener('click');
+            });
+        </script>
+    </body>
+
+</html>
