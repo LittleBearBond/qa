@@ -4,7 +4,7 @@
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>title</title>
+        <title>滚动加载的效果</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
         <meta content="telephone=no" name="format-detection">
         <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -188,10 +188,10 @@
                     },
                     $ = function(sel) {
                         return document.querySelector(sel);
+                    },
+                    loadList = function(args) {
+                        this.init(args);
                     };
-                var loadList = function(args) {
-                    this.init(args);
-                };
                 extend(loadList.prototype, {
                     init: function(opts) {
                         var self = this;
@@ -203,13 +203,15 @@
                             $listBox: $(this.opts.listBoxSelector),
                             $more: $(this.opts.moreSelector)
                         });
+
                         //模拟数据
                         var $listLi = document.querySelectorAll('li');
                         var len = $listLi.length,
                             i = 0;
                         this.moreHtml = '';
-                        for (; i < len; i++) {
+                        while (i < len) {
                             this.moreHtml += $listLi[i].outerHTML;
+                            i++;
                         }
                         return this;
                     },
@@ -221,7 +223,7 @@
                             timmer = setTimeout(function() {
                                 self.isCanLoad() && self.loadMore();
                             }, 100);
-                        });
+                        }, false);
                         return this;
                     },
                     isCanLoad: function() {
@@ -278,13 +280,8 @@
                                     renderData && self.$listBox.append(renderData);
                                     opts.curPage++;
                                 }
-                                if (opts.curPage >= opts.totalPage) {
-                                    opts.onComplete();
-                                    self.showSuccess();
-                                    self.hideMore();
-                                } else {
-                                    self.hideComplete();
-                                }
+                                opts.curPage >= opts.totalPage && opts.onComplete();
+                                self.hideMore();
                                 setTimeout(function() {
                                     self.isCanLoad() && self.loadMore();
                                 }, 0);
@@ -294,36 +291,25 @@
                                 limit = false;
                             }
                         });*/
-                        //insertAdjacentHTML(where, html)
+
                         //模拟一下
                         self.$more.classList.remove('hidden');
-
                         setTimeout(function() {
                             limit = false;
                             opts.curPage++;
                             if (opts.curPage >= opts.totalPage) {
                                 self.hideMore();
                                 opts.onComplete();
-                                return this;
+                                return;
                             }
                             self.$listBox.insertAdjacentHTML('beforeend', self.moreHtml);
-                            self.hideComplete();
-                        }, 2000);
+                            self.hideMore();
+                        }, 1500);
                         return this;
-                    },
-                    hideComplete: function() {
-                        var self = this;
-                        this.showSuccess();
-                        setTimeout(function() {
-                            self.$more.classList.add('hidden');
-                        }, 200);
                     },
                     //隐藏跟多加载
                     hideMore: function() {
                         this.$more.classList.add('hidden');
-                    },
-                    showSuccess: function() {
-                        this.showMsg('success');
                     },
                     showLoading: function() {
                         this.showMsg('loading');
@@ -331,7 +317,9 @@
                     showError: function() {
                         this.showMsg('error');
                     },
-                    showMsg: function(name) {}
+                    showMsg: function(msg) {
+                        console.log(msg);
+                    }
                 });
                 return function(args) {
                     if (!(this instanceof loadList)) {
@@ -340,23 +328,24 @@
                     return this;
                 };
             })();
-
             //页面业务
+            //document.addEventListener('DOMContentLoaded', function() {
             var viewEnd = document.querySelector('.view-end');
-
             var load = LoadList({
-                listBoxSelector: '.commentlist',
-                moreSelector: '.more',
-                totalPage: 3,
-                onComplete: function() {
-                    viewEnd.classList.remove('hidden');
-                }
-            });
-
-            viewEnd.addEventListener('click', function() {
-                load.$listBox.insertAdjacentHTML('beforeend', load.moreHtml);
-                viewEnd.removeEventListener('click');
-            });
+                    listBoxSelector: '.commentlist',
+                    moreSelector: '.more',
+                    totalPage: 3,
+                    onComplete: function() {
+                        viewEnd.classList.remove('hidden');
+                    }
+                }),
+                viewEndFn = function() {
+                    load.$listBox.insertAdjacentHTML('beforeend', load.moreHtml);
+                    viewEnd.removeEventListener('click', viewEndFn, false);
+                    viewEnd.innerHTML = '已经没有啦';
+                };
+            viewEnd.addEventListener('click', viewEndFn, false);
+            //},false);
         </script>
     </body>
 
