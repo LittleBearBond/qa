@@ -205,14 +205,12 @@
                         });
 
                         //模拟数据
-                        var $listLi = document.querySelectorAll('li');
-                        var len = $listLi.length,
-                            i = 0;
+                        var $listLi = document.querySelectorAll('li'),
+                            self = this;
                         this.moreHtml = '';
-                        while (i < len) {
-                            this.moreHtml += $listLi[i].outerHTML;
-                            i++;
-                        }
+                        Array.prototype.slice.call($listLi).forEach(function(item) {
+                            self.moreHtml += item.outerHTML;
+                        });
                         return this;
                     },
                     bindEvent: function() {
