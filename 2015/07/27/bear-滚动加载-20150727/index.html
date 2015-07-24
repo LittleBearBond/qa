@@ -162,7 +162,7 @@
                     emptyFunc = function() {},
                     options = {
                         curPage: 0, //当前页
-                        totalPage: 100, //总共多少页
+                        totalPage: 100, //总共多少页。真实情况极可能totalPage不是写死的，后端会每次在返回数据的时候给出
                         moreSelector: '', //加载更多的提示栏
                         listBoxSelector: '', //列表容器
                         disNum: 50, //滚动条距离底部多少开始加载
@@ -173,6 +173,7 @@
                         url: '',
                         ajaxType: 'get'
                     },
+                    //简版
                     extend = function() {
                         var i = 1,
                             key, len = arguments.length;
@@ -199,6 +200,7 @@
                         return this.initView().bindEvent();
                     },
                     initView: function() {
+                        //取到对应元素
                         extend(this, {
                             $listBox: $(this.opts.listBoxSelector),
                             $more: $(this.opts.moreSelector)
@@ -245,6 +247,7 @@
                         return true;
                         //return (sh - (st + wh) <= opts.disNum) && opts.curPage <= opts.totalPage && !limit;
                     },
+                    //加载数据，这里是模拟加载
                     loadMore: function(data) {
                         var self = this,
                             opts = this.opts;
@@ -266,16 +269,17 @@
                                 }
                                 self.showLoading();
                             },
+                            //error: this.showError.bind(this),
                             error: function() {
                                 self.showError();
                             },
                             success: function(r) {
                                 if (String(r && r.status) === '0') {
                                     // 如果是第一页才需要显示为空状态
-                                    var renderData = opts.renderData($.extend({}, r, {
+                                    var renderData = opts.renderData(extend({}, r, {
                                         bfirst: opts.curPage == 0
                                     }));
-                                    renderData && self.$listBox.append(renderData);
+                                    renderData && self.$listBox.insertAdjacentHTML('beforeend' , renderData);
                                     opts.curPage++;
                                 }
                                 opts.curPage >= opts.totalPage && opts.onComplete();
@@ -284,13 +288,12 @@
                                     self.isCanLoad() && self.loadMore();
                                 }, 0);
                             },
-                            error: $.proxy(self.showError, self),
                             complete: function() {
                                 limit = false;
                             }
                         });*/
 
-                        //模拟一下
+                        //模拟一下加载过程
                         self.$more.classList.remove('hidden');
                         setTimeout(function() {
                             limit = false;
@@ -309,12 +312,15 @@
                     hideMore: function() {
                         this.$more.classList.add('hidden');
                     },
+                    //显示正在加载
                     showLoading: function() {
                         this.showMsg('loading');
                     },
+                    //显示error
                     showError: function() {
                         this.showMsg('error');
                     },
+                    //统一处理
                     showMsg: function(msg) {
                         console.log(msg);
                     }
@@ -337,6 +343,7 @@
                         viewEnd.classList.remove('hidden');
                     }
                 }),
+                //加载到最后一条数据。
                 viewEndFn = function() {
                     load.$listBox.insertAdjacentHTML('beforeend', load.moreHtml);
                     viewEnd.removeEventListener('click', viewEndFn, false);
